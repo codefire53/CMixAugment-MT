@@ -1,0 +1,4 @@
+tweepy
+unidecode
+nltk
+requests
