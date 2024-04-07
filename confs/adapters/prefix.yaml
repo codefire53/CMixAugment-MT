@@ -1,0 +1,4 @@
+name: prefix_tuning
+num_virtual_tokens: 20
+encoder_hidden_size: 1024
+prefix_projection: true

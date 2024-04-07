@@ -1,0 +1,3 @@
+train_file_path: ./dataset/mt/calcs_english-hinglish/train.txt
+val_file_path: ./dataset/mt/calcs_english-hinglish/dev_val.txt
+test_file_path: ./dataset/mt/calcs_english-hinglish/dev_test.txt

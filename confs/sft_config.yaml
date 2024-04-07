@@ -1,0 +1,19 @@
+defaults:
+  - trainer: default
+  - models: m2m100
+  - tokenizers: m2m100
+  - dataloader: default
+  - datasets: config
+  - collators: default
+  - earlystopping: default
+  - checkpoint: default
+  - loggers: wandb
+  - optim: sft
+  - lr_monitor: default
+  - sft: default
+do_train: False
+do_test: True
+inference_only: true
+output_file: mnli_sft_translation_m2m100_418M.txt
+checkpoint_file: outputs/m2m100-base_sft/checkpoints/model-epoch=44-val_loss=7.07-val_bleu=13.65.ckpt
+experiment_type: sft

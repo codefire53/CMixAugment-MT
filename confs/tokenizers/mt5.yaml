@@ -1,0 +1,4 @@
+defaults:
+  - base_tokenizer
+max_length: 512
+prefix: translate English to Hindi-English

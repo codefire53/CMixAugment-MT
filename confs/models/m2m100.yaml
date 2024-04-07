@@ -1,0 +1,6 @@
+defaults:
+  - base_model
+pretrained_model_name_or_path: facebook/m2m100_418M
+multilang:
+  source_id: en
+  target_id: hi

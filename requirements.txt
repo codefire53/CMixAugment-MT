@@ -1,0 +1,13 @@
+numpy
+torch
+torchtext
+lightning
+hydra-core
+transformers
+evaluate
+datasets
+bitsandbytes
+sentencepiece
+accelerate
+git+https://github.com/AlanAnsell/peft.git
+wandb

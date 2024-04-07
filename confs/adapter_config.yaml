@@ -1,0 +1,19 @@
+defaults:
+  - trainer: default
+  - models: m2m100
+  - adapters: prefix
+  - tokenizers: m2m100
+  - dataloader: default
+  - datasets: config
+  - collators: default
+  - earlystopping: default
+  - checkpoint: default
+  - loggers: wandb
+  - optim: default
+  - lr_monitor: default
+do_train: False
+do_test: True
+inference_only: true
+output_file: mnli_adapter_translation_m2m100_418M-prefix-tuning.txt
+checkpoint_file: outputs/m2m100-base_prefix-tuning/checkpoints/model-epoch=48-val_loss=7.09-val_bleu=10.92.ckpt
+experiment_type: adapter

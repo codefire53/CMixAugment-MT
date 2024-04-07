@@ -1,0 +1,3 @@
+train_file_path: ./dataset/mt/mt-test/cleaned_train.csv
+val_file_path: ./dataset/mt/mt-test/cleaned_dev.csv
+test_file_path: ./dataset/mt/mt-test/cleaned_dev.csv

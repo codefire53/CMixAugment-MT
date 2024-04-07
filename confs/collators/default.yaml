@@ -1,0 +1,3 @@
+padding: max_length
+max_length: 512
+return_tensors: pt

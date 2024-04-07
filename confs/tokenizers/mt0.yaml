@@ -1,0 +1,3 @@
+defaults:
+  - base_tokenizer
+max_length: 512

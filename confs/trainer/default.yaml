@@ -1,0 +1,10 @@
+accelerator: gpu
+max_epochs: 30
+check_val_every_n_epoch: 1
+enable_checkpointing: True
+enable_progress_bar: True
+enable_model_summary: True
+accumulate_grad_batches: 8
+gradient_clip_val: 1.0
+inference_mode: True
+devices: 1

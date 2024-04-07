@@ -1,0 +1,3 @@
+monitor: val_bleu
+patience: 15
+mode: max

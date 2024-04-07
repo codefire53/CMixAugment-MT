@@ -1,0 +1,22 @@
+Evaluation Prompt
+
+You will be given one Hindi-English translation written for an English sentence.
+Your task is to rate the overall translation score based on given three different metrics.
+Please make sure you read and understand these instructions carefully. Please keep this document open while reviewing, and refer to it as needed.
+
+Evaluation Criteria:
+Adequacy (1-5) - this metric measures how well the translated text captures the meaning of the original English sentence. A score of 5 indicates a perfect match in meaning, while a score of 1 suggests that the translation has missed the essence of the original sentence completely.
+Grammar (1-5) - this evaluates the grammatical correctness of the translation in both languages. A score of 5 means the translation is grammatically flawless in both Hindi and English, whereas a score of 1 indicates significant grammatical errors.
+Naturalness (1-5) - this assesses how naturally the translation reads in the target language, in this case, English. A score of 5 suggests that the translation reads as if it were originally written in English, with no awkwardness or unnatural phrasing. A score of 1, however, would indicate that the translation feels forced or directly translated, lacking the fluency and ease of natural speech.
+
+Evaluations Steps:
+Read the Original Sentence and the Translation: Begin by thoroughly reading both the original English sentence and its Hindi translation. Ensure you understand the intended meaning of the original sentence.
+Rate Adequacy: Reflect on how well the translated sentence captures the essence and specifics of the original sentence. Consider if any key information is lost, added, or misrepresented in the translation.
+Rate Grammar: Assess the grammatical accuracy of the translated sentence in both languages. Pay attention to syntax, verb conjugations, noun-adjective agreement, and the correct use of prepositions and articles.
+Rate Naturalness: Determine how naturally the translated sentence reads. Consider if the sentence structure and word choices feel authentic to a native speaker, or if they seem awkward or directly lifted from the source language.
+
+English Sentence: {{Sentence}}
+
+Hindi-English Translation: {{Translation}}
+
+Overall score (integer scores within 1-5 ONLY): {{Score}}
