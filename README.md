@@ -1,6 +1,6 @@
 # CMixAugment-MT: An Empirical Study of Leveraging Finetuning of Machine Translation Model To Produce Synthetic Code Mixing Data For Data Augmentation 
 
-This is my NLP804 (Deep Learning For Natural Language Generation) project.
+This is my NLP804 (Deep Learning For Natural Language Generation) project. The goal here is to evaluate different finetuning strategies on machine translation model for producing better code-mixed synthetic dataset.
 
 ## Setup
 Setup conda environment
