@@ -11,3 +11,4 @@ sentencepiece
 accelerate
 git+https://github.com/AlanAnsell/peft.git
 wandb
+sentence_transformers
