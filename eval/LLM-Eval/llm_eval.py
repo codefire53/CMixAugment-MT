@@ -5,6 +5,7 @@ import json
 import torch
 import csv
 from tqdm import tqdm
+from torch import nn
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -13,7 +14,9 @@ def load_predictions(pred_filepath):
     with open(pred_filepath, "r") as pred_file:
         data = pred_file.read()
         rows = data.split("\n")
-        for row in rows:
+        for idx, row in enumerate(rows):
+            if idx == 0:
+                continue
             pair = row.split("\t")
             sentence = pair[0]
             translation = pair[1]
@@ -57,15 +60,34 @@ def predict_score(input_prompts, model, tokenizer):
     res = -1
     for idx, input_prompt in tqdm(enumerate(input_prompts)):
         with torch.inference_mode():
-            encodings = tokenizer(input_prompt, padding='longest', truncation=True, max_length=2048, return_tensors="pt")
+            encodings = tokenizer(input_prompt, padding=False, add_special_tokens=False, 
+                return_attention_mask=True,truncation=True, max_length=2048, return_tensors="pt")
             encodings = encodings.to(device)
             input_ids = encodings["input_ids"]
-            loss = model(input_ids, labels=input_ids).loss
-        pp = torch.exp(loss).detach().cpu().item()
-        print(pp)
-        if pp < min_pp:
-            min_pp = pp
-            res = idx + 1
+            attn_mask = encodings["attention_mask"]
+            bos_tokens_tensor = torch.tensor([[tokenizer.bos_token_id]] * input_ids.size(dim=0)).to(device)
+
+            input_ids = torch.cat([bos_tokens_tensor, input_ids], dim=1)
+            attn_mask = torch.cat(
+                [torch.ones(bos_tokens_tensor.size(), dtype=torch.int64).to(device), attn_mask], dim=1
+            )
+            labels = input_ids
+
+            out_logits = model(input_ids, attention_mask=attn_mask).logits
+
+            shift_logits = out_logits[..., :-1, :].contiguous()
+            shift_labels = labels[..., 1:].contiguous()
+            shift_attention_mask_batch = attn_mask[..., 1:].contiguous()
+            loss_fct = nn.CrossEntropyLoss(reduction="none")
+            ppl = torch.exp(
+                (loss_fct(shift_logits.transpose(1, 2), shift_labels) * shift_attention_mask_batch).sum(1)
+                / shift_attention_mask_batch.sum(1)
+            )
+            pp = ppl[0].item()
+            if pp < min_pp:
+                min_pp = pp
+                res = idx + 1
+
     return res
 
 def evaluate_llm(args):

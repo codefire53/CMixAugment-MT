@@ -2,10 +2,11 @@ import pandas as pd
 import os
 from sklearn.metrics import cohen_kappa_score
 import numpy as np
+import argparse
 
 
 def eval_llm_as_judge_score(args):
-    file_paths = args.prediction_files
+    file_paths = eval(args.prediction_files)
     dataframes = []
 
     all_labels = [i for i in range(1, 6)]
@@ -36,8 +37,7 @@ def eval_llm_as_judge_score(args):
     output_file_path = args.output_file
     final_df[['sentence', 'translation', 'final_score']].to_csv(output_file_path, sep='\t', index=False)
 
-
-    print(f"cohen kappa score: {cohen_kappa_score(annotators_scores[0], annotators_scores[1], labels=[1,2,3,4,5])}")
+    print(f"cohen kappa score: {cohen_kappa_score(annotators_scores[0], annotators_scores[1], weights='linear')}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

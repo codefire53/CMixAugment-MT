@@ -9,11 +9,11 @@ from lightning.pytorch.callbacks import ModelCheckpoint, EarlyStopping, RichProg
 
 def load_dataset_from_given_configs(tokenizer, tokenizer_cfg, dataset_cfg, collator_cfg, dataloader_cfg):
     if dataset_cfg.task == 'mt':
-        dataset = CALCS2021Dataset(model.tokenizer, cfg.tokenizers, cfg.datasets, cfg.collators, cfg.dataloader)
+        dataset = CALCS2021Dataset(tokenizer, tokenizer_cfg, dataset_cfg, collator_cfg, dataloader_cfg)
     elif dataset_cfg.task == 'sa':
-        dataset = CardiffSentimentEnglishDataset(model.tokenizer, cfg.tokenizers, cfg.datasets, cfg.collators, cfg.dataloader)
+        dataset = CardiffSentimentEnglishDataset(tokenizer, tokenizer_cfg, dataset_cfg, collator_cfg, dataloader_cfg)
     else:
-        dataset = MNLIDataset(model.tokenizer, cfg.tokenizers, cfg.datasets, cfg.collators, cfg.dataloader)
+        dataset = MNLIDataset(tokenizer, tokenizer_cfg, dataset_cfg, collator_cfg, dataloader_cfg)
     dataset.load_dataset()
     return dataset
 
